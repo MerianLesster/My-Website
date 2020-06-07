@@ -18,5 +18,5 @@ $ npm run start
 # generate static project
 $ npm run generate
 ```
-
+http://merian-lesster.s3-website.ap-south-1.amazonaws.com/
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
