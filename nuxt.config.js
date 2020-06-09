@@ -1,4 +1,7 @@
 
+const env = require("dotenv").config();
+process.env = { ...env.parsed, ...process.env };
+console.log(process.env);
 export default {
   mode: 'spa',
   /*
@@ -27,8 +30,7 @@ export default {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [
-  ],
+  plugins: [],
   /*
   ** Nuxt.js dev-modules
   */
@@ -40,7 +42,12 @@ export default {
   modules: [
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
+    '@nuxtjs/axios',
   ],
+
+  axios: {
+    baseURL: process.env.BASE_URL
+  },
   /*
   ** Build configuration
   */
@@ -50,5 +57,9 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+
+  env: {
+    BASE_URL: process.env.BASE_URL,
   }
 }
