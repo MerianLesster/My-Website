@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show" style="margin:20px">
+    <b-form @submit="onSubmit" style="margin:20px">
       <b-form-group label="Enter Product Name:">
         <b-form-input
           v-model="form.productName"
@@ -39,7 +39,6 @@
       <b-button type="submit" variant="primary">{{
         productItem ? "Edit" : "Add"
       }}</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
     </b-form>
   </div>
 </template>
@@ -55,7 +54,6 @@ export default {
   },
   data() {
     return {
-      show: true,
       form: {
         productName: "",
         productType: null,
@@ -84,26 +82,19 @@ export default {
       evt.preventDefault();
       this.form.price = parseFloat(this.form.price);
       if (this.productItem) {
-          const finalObj = {...this.productItem,...this.form}
+        const finalObj = { ...this.productItem, ...this.form };
         await this.$store.dispatch("products/editProduct", finalObj);
+        this.$nuxt.$emit("reloadProducts");
         window.alert("Successfully Edited");
       } else {
         await this.$store.dispatch("products/addProducts", this.form);
+        this.$nuxt.$emit("reloadProducts");
         window.alert("Successfully Added");
-      }
-    },
-    onReset(evt) {
-      evt.preventDefault();
-      // Reset our form values
-      (this.form.productName = ""),
+        (this.form.productName = ""),
         (this.form.productType = null),
         (this.form.price = 0),
         (this.form.address = "");
-      // Trick to reset/clear native browser form validation state
-      this.show = false;
-      this.$nextTick(() => {
-        this.show = true;
-      });
+      }
     }
   }
 };

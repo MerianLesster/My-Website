@@ -20,7 +20,7 @@ export const actions = {
       const response = await this.$axios.get(`/Merians`);
       commit("SET_PRODUCTS", response.data);
     } catch (error) {
-      throw Error(error);
+      return error;
     }
   },
 
@@ -29,7 +29,7 @@ export const actions = {
       const response = await this.$axios.post(`/Merians`, obj);
       return response;
     } catch (error) {
-      throw Error(error);
+      return error;
     }
   },
 
@@ -39,7 +39,7 @@ export const actions = {
       const response = await this.$axios.put(`/Merians/${obj.id}`, obj);
       return response;
     } catch (error) {
-      throw Error(error);
+      return error;
     }
   },
 
@@ -47,7 +47,7 @@ export const actions = {
     try {
       const response = await this.$axios.delete(`/Merians/${id}`);
     } catch (error) {
-      throw Error(error);
+      return error;
     }
   },
 
@@ -56,7 +56,7 @@ export const actions = {
       const response = await this.$axios.get(`/Merians/Abc/${id}`);
       return response;
     } catch (error) {
-      throw Error(error);
+      return error;
     }
   },
 

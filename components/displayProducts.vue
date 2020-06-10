@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      fields: ['productName', 'productType', 'price', 'address', 'action'],
+      fields: ['id', 'productName', 'productType', 'price', 'address', 'action'],
       productList: null
     };
   },
@@ -44,7 +44,7 @@ export default {
   methods:{
       async deleteItem(id){
         await this.$store.dispatch("products/deleteProduct", id);
-        this.$emit("reloadProducts");
+        this.$nuxt.$emit("reloadProducts");
         window.alert("Successfully Deleted");
       }
   }
