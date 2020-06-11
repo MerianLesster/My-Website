@@ -1,5 +1,3 @@
-# Merian
-
 > My Web Application
 
 ## Build Setup
